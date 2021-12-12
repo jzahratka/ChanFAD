@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ channel.description }}</title>
+</head>
+<body>
+    <h1><strong>PDB ID: <a href="https://rcsb.org/structure/{{ channel.pdb }}">{{ channel.pdb }}</a></strong></h1>
+    <h2>{{ channel.description }}</h2>
+    <h4>({{ channel.species }})</h4>
+
+    <iframe src="{{ channel.icn3d }} name="channel" height="500" style:"border-none" width="1024""></iframe>
+    <br />
+
+    <table>
+    <tr>
+    <td><a href="https://uniprot.org/uniprot/{{ channel.uniprot }}">[View on UniProt]</a></td>
+    <td>&emsp;</td>
+    <td><a href="https://ncbi.nlm.nih.gov/protein/{{ channel.pdb }}_A?report=fasta">[View FASTA on NCBI]</a></td>
+    <td>&emsp;</td>
+    <td>
+    {% if channel.channelpedia != "None" %}
+        <a href="{{ channel.channelpedia }}">[View Channel on Channelpedia]</a>
+    {% else %}
+        There is no Channelpedia entry for this channel.
+    {% endif %}
+    </td>
+    </tr>
+    </table>
+
+</body>
+
+{% endblock %}
+</html>

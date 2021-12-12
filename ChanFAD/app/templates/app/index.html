@@ -1,0 +1,32 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>ChanFAD</h1>
+    <p class="lead">ChanFAD is a functional annotation database for ion channels.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Welcome!</h2>
+        <p>
+            ChanFAD aims to improve research workflows by providing structural and functional
+            annotation data for ion channels, with relevant links to other databases in a 
+            conveniently-accessible way.
+        </p>
+        <p><a class="btn btn-default" href="{% url 'about' %}">About ChanFAD &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Explore the database</h2>
+        <p>Browse our list of annotated ion channels.</p>
+        <p><a class="btn btn-default" href="{% url 'channels' %}">Channel List &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Have questions or want to contribute?</h2>
+        <p>Send us a message or contact us on our Twitter account!</p>
+        <p><a class="btn btn-default" href="{% url 'contact' %}">Contact Us &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}

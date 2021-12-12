@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+    {% extends "app/layout.html" %}
+
+    {% block content %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Search the ChanFAD database</title>
+</head>
+<body>
+    <h2>Search the ChanFAD Database</h2>
+    <h5>Search by PDB ID, species, channel name, or more.</h5>
+    <form action="{% url 'search' %}" method="GET" value="{{request.GET.q}}">
+        Search<input type="text" name="q" value="{{request.GET.q}}" placeholder="Search the database..." />
+        <input type="submit" name="submit" value="Search" />
+    </form>
+
+    {% if submitbutton == 'Search' and request.GET.q != "" %}
+    {% if results %}
+
+    <h3>Results for <b>{{request.GET.q}}</b></h3>
+    <br />
+    {% for result in results %}
+
+    <a href="{% url 'channel-entry' result.pdb %}">{{ result.pdb }}</a> ({{result.description}}, {{result.species}})
+    <br />
+
+    {% endfor %}
+    {% else %}
+    No search results for {{request.GET.q}}!
+    {% endif %}
+    {% endif %}
+
+</body>
+
+{% endblock %}
+
+</html>
