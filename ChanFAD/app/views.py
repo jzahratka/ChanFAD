@@ -36,7 +36,7 @@ def contact(request):
         'app/contact.html',
         {
             'title':'Contact',
-            'message':'Your contact page.',
+            'message':'Get in touch with us!',
             'year':datetime.now().year,
             'numChan': numChan,
             'ORF3a': ORF3a,

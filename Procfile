@@ -1,0 +1,1 @@
+web: gunicorn chanfad.wsgi --log-file -
