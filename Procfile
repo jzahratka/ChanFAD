@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath ChanFAD.ChanFAD.wsgi --log-file -
+web: gunicorn ChanFAD.wsgi --log-file -
