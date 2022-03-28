@@ -30,14 +30,32 @@
         There is no Channelpedia entry for this channel.
     {% endif %}
     </td>
+    <td>&emsp;</td>
+    <td>
+      {% if channel.iuphar is null %}
+        There is no IUPHAR entry for this channel.
+      {% else %}
+        <a href="{{ channel.iuphar }}">[View on IUPHAR]</a>
+      {% endif %}
+    </td>
     </tr>
+
     <tr>
     <td><a href="http://amigo.geneontology.org/amigo/gene_product/UniProtKB:{{ channel.uniprot }}">[View on AmiGO]</a></td>
     <td>&emsp;</td>
     <td><a href="https://alphafold.ebi.ac.uk/entry/{{ channel.uniprot }}">[View Predicted Structure on AlphaFold]</a></td>
     <td>&emsp;</td>
     <td><a href="https://www.ebi.ac.uk/interpro/protein/UniProt/{{ channel.uniprot }}/">[View on InterPro]</a></td>
+    <td>&emsp;</td>
+    <td>
+    {% if channel.kegg is null %}
+        There is no KEGG entry for this channel.
+    {% else %}
+        <a href="https://www.genome.jp/entry/{{ channel.kegg }}">[View on KEGG]</a>
+    {% endif %}
+    </td>
     </tr>
+
     </table>
 
 </body>

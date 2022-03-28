@@ -18,6 +18,8 @@ class Channel(models.Model):
     submitter = models.CharField(max_length=50, help_text="First initial, period, last name")
     uniprot = models.CharField(max_length=6, help_text="Six-character UniProt identifier. Used for linking to the channels' UniProt page.")
     channelpedia = models.CharField(max_length=1000, help_text="Channelpedia link, if applicable. Leave blank if there is no Channelpedia entry present.")
+    kegg = models.CharField(max_length=10, null=True, blank=True, help_text="KEGG Pathway Reference number (e.g., K04857), null ok")
+    iuphar = models.TextField(max_length=255, null=True, blank=True, help_text="IUPHAR ion channel database LINK. Not available for all channels, null ok")
     dateSubmission = models.DateTimeField()
 
     def __str__(self):
@@ -37,4 +39,3 @@ class Annotation(models.Model):
 
     def __str__(self):
         return self.pdb
-

@@ -24,7 +24,7 @@ def home(request):
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
-    
+
     """Load channels into the view"""
     chan = Channel.objects.order_by('pdb')
     numChan = Channel.objects.all().count()
@@ -62,7 +62,7 @@ def about(request):
 
 def search(request):
     assert isinstance(request, HttpRequest)
-    
+
     if request.method == 'GET':
         query = request.GET.get('q')
 
@@ -80,8 +80,21 @@ def search(request):
     else:
         return render(request, 'app/search.html')
 
-        
+
         ''')'''
+
+def resources(request):
+    assert isinstance(request, HttpRequest)
+
+    return render(
+    request,
+    'app/resources.html',
+        {
+            'title':'Resources',
+            'message':'Other ion channel related resources you may find useful',
+            'year': datetime.now().year,
+        }
+    )
 
 class ChannelListView(generic.ListView):
     model = Channel

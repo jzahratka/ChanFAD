@@ -1,0 +1,10 @@
+﻿domainIndex,pdb,Domain,Chain,Start,End,Notes,Reference
+1,7KJR,Transmembrane domain 1,A,40,62,,
+2,7KJR,TRAF3 Binding,A,40,40,,
+3,7KJR,Caveolin interaction 2,A,69,79,,
+4,7KJR,Transmembrane domain 2,A,77,99,,
+5,7KJR,Transmembrane domain 3,A,104,126,,
+6,7KJR,Caveolin interaction 1,A,106,114,,
+7,7KJR,Dimerization,A,127,133,,
+8,7KJR,Caveolin interaction 3,A,160,163,,
+9,7KJR,ER Export,A,171,173,,
