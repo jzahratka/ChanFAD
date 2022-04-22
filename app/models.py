@@ -20,6 +20,9 @@ class Channel(models.Model):
     channelpedia = models.CharField(max_length=1000, help_text="Channelpedia link, if applicable. Leave blank if there is no Channelpedia entry present.")
     kegg = models.CharField(max_length=10, null=True, blank=True, help_text="KEGG Pathway Reference number (e.g., K04857), null ok")
     iuphar = models.TextField(max_length=255, null=True, blank=True, help_text="IUPHAR ion channel database LINK. Not available for all channels, null ok")
+    reference = models.CharField(max_length=255, null=True, blank=True, help_text="DOI for primary reference corresponding to PDB model. null ok")
+    fasta = models.TextField(max_length=5000, null=True, blank=True, help_text="FASTA sequence for the primary channel subunit. null ok")
+    featureset = models.TextField(max_length=5000, null=True, blank=True, help_text="Array of features in text for visualizing annotations. null ok")
     dateSubmission = models.DateTimeField()
 
     def __str__(self):

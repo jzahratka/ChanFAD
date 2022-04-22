@@ -8,11 +8,18 @@
 <head>
     <meta charset="utf-8" />
     <title>{{ channel.description }}</title>
+    <script src="https://cdn.jsdelivr.net/gh/calipho-sib/feature-viewer@v1.1.0/dist/feature-viewer.bundle.js"></script>
 </head>
 <body>
     <h1><strong>PDB ID: <a href="https://rcsb.org/structure/{{ channel.pdb }}">{{ channel.pdb }}</a></strong></h1>
     <h2>{{ channel.description }}</h2>
     <h4>({{ channel.species }})</h4>
+
+    {% if channel.reference is null %}
+      <h4>PDB reference not currently available</h4>
+    {% else %}
+      <h4><a href="{{ channel.reference }}">PDB reference citation</a></h4>
+    {% endif %}
 
     <iframe src="{{ channel.icn3d }} name="channel" height="500" style:"border-none" width="1024""></iframe>
     <br />
@@ -57,6 +64,50 @@
     </tr>
 
     </table>
+
+    <br>
+    <div id="fv"></div>
+
+    <script>
+    var options = {showAxis: true, showSequence: true, brushActive: true, toolbar: true, bubbleHelp: true, zoomMax: 20};
+    var fasta = "{{ channel.fasta|safe }}";
+    var featureSet = "{{ channel.featureset|safe }}";
+    var splitSet = featureSet.split(' ');
+    var ft = new FeatureViewer.createFeature(fasta, '#fv', options);
+
+    // Split featureSet using split() using a space ' ' as a delimiter
+
+    var parsed = [];
+    var fs = [];
+
+    for (var i in splitSet) {
+      parsed[i] = JSON.parse(splitSet[i]);
+    }
+
+    for (var j in parsed) {
+      fs.push(parsed[j]);
+    }
+
+    ft.addFeature({
+//      data: [{x:40,y:40},{x:40,y:62},{x:69,y:79},{x:77,y:99},{x:104,y:126},{x:106,y:114},{x:127,y:133},{x:160,y:163},{x:171,y:173},{x:209,y:264}],
+      data: parsed,
+      name: "functional domains",
+      className: "annotations",
+      color: "#C03000",
+      height: 8,
+      type: "rect"
+    });
+
+    function zoomOut(){
+      ft.resetZoom();
+    }
+
+    var buttonResetZoom = '<a class="btn btn-info btnZoom" onclick="zoomOut()">Reset Zoom</a>';
+    $("#fv").append("<p class='btnBlock'>"+buttonResetZoom+"</p>");
+
+    </script>
+
+<p>FASTA primary sequence shown in <a href="https://github.com/calipho-sib/feature-viewer">neXtProt's feature viewer.</a> Click and drag a section of sequence to zoom in. Right-click the sequence to reset the zoom.</p>
 
 </body>
 
