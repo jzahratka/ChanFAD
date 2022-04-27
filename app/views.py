@@ -96,6 +96,19 @@ def resources(request):
         }
     )
 
+def tutorial(request):
+    assert isinstance(request, HttpRequest)
+
+    return render(
+    request,
+    'app/tutorial.html',
+        {
+            'title':'How to Use ChanFAD',
+            'message':'A guide to basic functionality',
+            'year': datetime.now().year,
+        }
+    )
+
 class ChannelListView(generic.ListView):
     model = Channel
 

@@ -1,0 +1,55 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+<br>
+
+<p>ChanFAD is a manually curated database of ion channel functional annotation domains.
+  The project's primary aim is to provide an intuitive interface for "bridging the gap" between 3D structural properties studied by biophysicists and electrophysiologists with the functional domains probed by geneticists and molecular biologists.
+  ChanFAD makes extensive use of the <a href="https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html">NCBI iCn3D Protein Structure Viewer</a> for rendering of ion channel PDBs, specifically its "Defined Sets" feature for 3D visualization of
+  protein functional domains on the ion channel PDB's biological unit <a href="https://academic.oup.com/bioinformatics/article/36/1/131/5520951">(Wang et al., <em>Bioinformatics</em>, 2020)</a>. ChanFAD also provides links to other database entries relevant to ion channel function,
+  as well as a more traditional functional annotation map using the <a href="https://github.com/calipho-sib/feature-viewer">Swiss Institute of Bioinformatics neXtProt feature viewer</a>.
+</p>
+
+<p>For more information about the iCn3D interface and functionality, <a href="https://www.ncbi.nlm.nih.gov/Structure/icn3d/icn3d.html">please view the iCn3D tutorial on the NCBI website</a>.</p><br>
+
+<h3>Searching the ChanFAD Database</h3>
+<p>While individual channel entries can be seen on the <a href="{% url 'channels' %}">Channel List</a> page, the <a href="{% url 'search' %}">Search</a> function can often be more convenient. You can search ChanFAD using the following parameters:
+<ul>
+  <li>PDB ID</li>
+  <li>Species</li>
+  <li>Gene Symbol</li>
+  <li>Description</li>
+  <li>UniProt ID</li>
+</ul>
+</p>
+
+<h3>How to download ChanFAD sets for your own use in iCn3D</h3>
+<p>
+<ol type="1">
+  <li>Navigate to your channel of interest's ChanFAD page (e.g., <a href="https://www.chanfad.org/channel/7KJR">7KJR</a>)</li>
+  <li>Once the iCn3D interface has loaded, navigate to <strong>File > Save Files > Selection File.</strong> </li>
+  <li>Save the selection file (in .txt format) to your device.</li>
+  <li>The saved selection file can now be reloaded into iCn3D for your own workflow!</li>
+</ol>
+</p>
+
+<h3>How to Mutate Residues in iCn3D</h3>
+<ol type = "1">
+  <li>Navigate to your channel of interest's ChanFAD page, or open your PDB file in iCn3D</li>
+  <li>Once the iCn3D interface has loaded, navigate to <strong>Analysis > Mutation.</strong></li>
+  <li>Input the point mutation(s) of interest:</li>
+    <ul>
+      <li>Inputs should be in the following format: [PDB]_[Chain]_[Residue]_[New Amino Acid], e.g. <strong>7KJR_A_57_H</strong> mutates the 57th amino acid on chain A to histidine.</li>
+      <li>Multiple mutations can be separated with a comma: <strong>7KJR_A_57_H,7KJR_A_251_V,7KJR_B_57_H,7KJR_B_251_V</strong></li>
+    </ul>
+  <li>To view the mutated structure in the iCn3D interface, click <strong>3d with scap</strong>. A new iCn3D instance will open with the mutated residue(s).<br>
+    You can toggle between the original and mutated entries by pressing the 'a' key.</li>
+  <li>To download the mutated PDB structure, click <strong>PDB</strong>. The modified PDB will then be available for downstream workflows.</li>
+  </ol>
+<strong>Usage Note:</strong> If a mutated PDB structure is viewed directly in the iCn3D interface, you may need to press "View Selection" in the iCn3D window to see the entire protein.
+
+{% endblock %}
